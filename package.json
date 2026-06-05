@@ -1,0 +1,29 @@
+{
+  "name": "@grilymannen/grily-utils",
+  "version": "1.0.0",
+  "description": "Shared utility functions",
+  "main": "dist/utils.js",
+  "types": "dist/utils.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grilymannen/grily-utils.git"
+  },
+  "author": "grilymannen",
+  "bugs": {
+    "url": "https://github.com/grilymannen/grily-utils/issues"
+  },
+  "homepage": "https://github.com/grilymannen/grily-utils#readme"
+}
