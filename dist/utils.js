@@ -52,6 +52,29 @@ export function formatServerName(name) {
     })
         .join('');
 }
+export function formatTime(date) {
+    const now = new Date();
+    const formatTimeHM = (d) => {
+        const hours = d.getHours(); // no padding
+        const minutes = String(d.getMinutes()).padStart(2, "0");
+        return `${hours}:${minutes}`;
+    };
+    const isToday = date.getFullYear() === now.getFullYear() &&
+        date.getMonth() === now.getMonth() &&
+        date.getDate() === now.getDate();
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    const isYesterday = date.getFullYear() === yesterday.getFullYear() &&
+        date.getMonth() === yesterday.getMonth() &&
+        date.getDate() === yesterday.getDate();
+    if (isToday) {
+        return formatTimeHM(date); // e.g. "9:05"
+    }
+    if (isYesterday) {
+        return `Yesterday at ${formatTimeHM(date)}`;
+    }
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${formatTimeHM(date)}`;
+}
 /**
  * Returns a random element from an array.
  *

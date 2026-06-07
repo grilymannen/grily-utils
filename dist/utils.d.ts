@@ -26,6 +26,7 @@ export declare function deepCapitalize(s: string): string;
  * @returns {string}
  */
 export declare function formatServerName(name: string): string;
+export declare function formatTime(date: Date): string;
 /**
  * Returns a random element from an array.
  *
