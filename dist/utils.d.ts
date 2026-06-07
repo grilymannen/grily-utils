@@ -26,6 +26,36 @@ export declare function deepCapitalize(s: string): string;
  * @returns {string}
  */
 export declare function formatServerName(name: string): string;
+/**
+ * Formats a Date object into 24-hour time (H:MM).
+ * Hours are not zero-padded, minutes are always two digits.
+ *
+ * @param date - The date to format
+ * @returns Formatted time string, e.g. "9:05", "14:30"
+ */
+export declare function formatTimeHM(date: Date): string;
+/**
+ * Formats a Date object into a full readable timestamp.
+ * Includes weekday, month name, day, year, and time (H:MM).
+ *
+ * Example output:
+ * "Monday, January 15, 2026 9:05"
+ *
+ * @param date - The date to format
+ * @returns Fully formatted date-time string
+ */
+export declare function formatTimeFull(date: Date): string;
+/**
+ * Formats a Date into a human-friendly relative or absolute string.
+ *
+ * Rules:
+ * - Today → "H:MM"
+ * - Yesterday → "Yesterday at H:MM"
+ * - Otherwise → "M/D/YYYY H:MM"
+ *
+ * @param date - The date to format
+ * @returns Human-readable relative or absolute time string
+ */
 export declare function formatTime(date: Date): string;
 /**
  * Returns a random element from an array.

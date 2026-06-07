@@ -52,13 +52,67 @@ export function formatServerName(name) {
     })
         .join('');
 }
+/**
+ * Formats a Date object into 24-hour time (H:MM).
+ * Hours are not zero-padded, minutes are always two digits.
+ *
+ * @param date - The date to format
+ * @returns Formatted time string, e.g. "9:05", "14:30"
+ */
+export function formatTimeHM(date) {
+    const hours = date.getHours(); // no padding
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+}
+/**
+ * Formats a Date object into a full readable timestamp.
+ * Includes weekday, month name, day, year, and time (H:MM).
+ *
+ * Example output:
+ * "Monday, January 15, 2026 9:05"
+ *
+ * @param date - The date to format
+ * @returns Fully formatted date-time string
+ */
+export function formatTimeFull(date) {
+    const weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+    const month = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+    return `${weekday[date.getDay()]}, ${month[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} ${formatTimeHM(date)}`;
+}
+/**
+ * Formats a Date into a human-friendly relative or absolute string.
+ *
+ * Rules:
+ * - Today → "H:MM"
+ * - Yesterday → "Yesterday at H:MM"
+ * - Otherwise → "M/D/YYYY H:MM"
+ *
+ * @param date - The date to format
+ * @returns Human-readable relative or absolute time string
+ */
 export function formatTime(date) {
     const now = new Date();
-    const formatTimeHM = (d) => {
-        const hours = d.getHours(); // no padding
-        const minutes = String(d.getMinutes()).padStart(2, "0");
-        return `${hours}:${minutes}`;
-    };
     const isToday = date.getFullYear() === now.getFullYear() &&
         date.getMonth() === now.getMonth() &&
         date.getDate() === now.getDate();
@@ -68,7 +122,7 @@ export function formatTime(date) {
         date.getMonth() === yesterday.getMonth() &&
         date.getDate() === yesterday.getDate();
     if (isToday) {
-        return formatTimeHM(date); // e.g. "9:05"
+        return formatTimeHM(date);
     }
     if (isYesterday) {
         return `Yesterday at ${formatTimeHM(date)}`;
