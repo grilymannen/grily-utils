@@ -72,4 +72,11 @@ export declare function pickRandom<T>(array: T[]): T | undefined;
  * @returns {number}
  */
 export declare function toRadians(degrees: number): number;
+/**
+ * Converts radians to degrees.
+ *
+ * @param {number} radians
+ * @returns {number}
+ */
+export declare function toDegrees(radians: number): number;
 //# sourceMappingURL=utils.d.ts.map

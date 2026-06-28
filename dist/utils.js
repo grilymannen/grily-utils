@@ -151,4 +151,13 @@ export function pickRandom(array) {
 export function toRadians(degrees) {
     return degrees * (Math.PI / 180);
 }
+/**
+ * Converts radians to degrees.
+ *
+ * @param {number} radians
+ * @returns {number}
+ */
+export function toDegrees(radians) {
+    return radians * (180 / Math.PI);
+}
 //# sourceMappingURL=utils.js.map
