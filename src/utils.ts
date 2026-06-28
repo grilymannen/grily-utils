@@ -168,3 +168,12 @@ export function pickRandom<T>(array: T[]): T | undefined {
 export function toRadians(degrees: number): number {
   return degrees * (Math.PI / 180);
 }
+/**
+ * Converts radians to degrees.
+ * 
+ * @param {number} radians 
+ * @returns {number}
+ */
+export function toDegrees(radians: number): number {
+  return radians * (180 / Math.PI)
+}
