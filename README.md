@@ -11,7 +11,7 @@ npm install github:grilymannen/grily-utils
 
 **Pin to a version tag:**
 ```bash
-npm install github:grilymannen/grily-utils#v1.0.0
+npm install github:grilymannen/grily-utils#v1.x.x
 ```
 
 **From GitHub Packages:**
