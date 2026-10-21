@@ -15,17 +15,22 @@ export declare function capitalize(s: string): string;
  */
 export declare function deepCapitalize(s: string): string;
 /**
- * Formats a server name into an abbreviated identifier.
+ * Formats a name into an abbreviated identifier.
  * Each word is reduced to its first alphanumeric character.
  * Non-alphanumeric-leading tokens are preserved as-is.
  *
  * Example:
- * "My Server 123" -> "MS1"
+ *
+ * ```ts
+ * const name = abbreviateName("Hello 2 you!")
+ * console.log(name) // Will log "H2Y!"
+ * ```
+ *
  *
  * @param {string} name - The name to format
  * @returns {string}
  */
-export declare function formatServerName(name: string): string;
+export declare function abbreviateName(name: string): string;
 /**
  * Formats a Date object into 24-hour time (H:MM).
  * Hours are not zero-padded, minutes are always two digits.

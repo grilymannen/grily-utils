@@ -28,17 +28,22 @@ export function deepCapitalize(s) {
         .join(' ');
 }
 /**
- * Formats a server name into an abbreviated identifier.
+ * Formats a name into an abbreviated identifier.
  * Each word is reduced to its first alphanumeric character.
  * Non-alphanumeric-leading tokens are preserved as-is.
  *
  * Example:
- * "My Server 123" -> "MS1"
+ *
+ * ```ts
+ * const name = abbreviateName("Hello 2 you!")
+ * console.log(name) // Will log "H2Y!"
+ * ```
+ *
  *
  * @param {string} name - The name to format
  * @returns {string}
  */
-export function formatServerName(name) {
+export function abbreviateName(name) {
     if (!name)
         return '';
     return name
