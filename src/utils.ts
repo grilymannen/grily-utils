@@ -1,3 +1,28 @@
+const weekday: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const month: string[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+
 /**
  * Capitalizes the first Unicode character of a string.
  * Returns an empty string for falsy input.
@@ -84,31 +109,6 @@ export function formatTimeHM(date: Date) {
  * @returns Fully formatted date-time string
  */
 export function formatTimeFull(date: Date): string {
-  const weekday: string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  const month: string[] = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
   return `${weekday[date.getDay()]}, ${month[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} ${formatTimeHM(date)}`;
 }
 
@@ -149,7 +149,6 @@ export function formatTime(date: Date): string {
 
   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${formatTimeHM(date)}`;
 }
-
 /**
  * Returns a random element from an array.
  *
@@ -163,7 +162,6 @@ export function pickRandom<T>(array: T[]): T | undefined {
   const index = Math.floor(Math.random() * array.length);
   return array[index];
 }
-
 /**
  * Converts degrees to radians.
  *
@@ -181,4 +179,45 @@ export function toRadians(degrees: number): number {
  */
 export function toDegrees(radians: number): number {
   return radians * (180 / Math.PI)
+}
+
+/**
+ * Converts a Temporal.Instant into a human readable relative or absolute time string 
+ * 
+ * Example: 
+ * ```ts
+ * formatTemporal(today) // "Today at HH:MM"
+ * formatTemporal(yesterday) // "Yesterday at HH:MM"
+ * formatTemporal(someOtherTime) // "YYYY:MM:DD"
+ * ```
+ * @param instant {Temporal.Instant} - The instant in time to convert
+ * @returns Human readable relative or absolute time string
+ */
+export function formatTemporal(instant: Temporal.Instant): string {
+  if (!instant) return "";
+  const now = Temporal.Now.zonedDateTimeISO();
+  const ztd = instant.toZonedDateTimeISO(Temporal.Now.timeZoneId());
+  const time = `${String(ztd.hour).padStart(2, "0")}:${String(ztd.minute).padStart(2, "0")}`;
+
+  const isToday = now.year === ztd.year && now.dayOfYear === ztd.dayOfYear;
+  const isYesterday =
+    now.year === ztd.year && now.dayOfYear - 1 === ztd.dayOfYear;
+  if (isToday) {
+    return `Today at ${time}`;
+  }
+  if (isYesterday) {
+    return `Yesterday at ${time}`;
+  }
+
+  return `${ztd.year}/${ztd.month}/${ztd.day}`;
+}
+/**
+ * Formats a temporal instant into a full human readable string, including year, month name, day name and time (HH:MM)
+ * 
+ * @param instant {Temporal.Instant}
+ * @returns Full human readable string 
+ */
+export function formatTemporalFull(instant: Temporal.Instant): string {
+  const ztd = instant.toZonedDateTimeISO(Temporal.Now.timeZoneId())
+  return `${weekday[ztd.dayOfWeek - 1]}, ${month[ztd.month - 1]} ${ztd.day}, ${String(ztd.hour).padStart(2, "0")}:${String(ztd.minute).padStart(2, "0")}`
 }
