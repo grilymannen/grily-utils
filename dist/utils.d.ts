@@ -93,15 +93,15 @@ export declare function toDegrees(radians: number): number;
  * formatTemporal(yesterday) // "Yesterday at HH:MM"
  * formatTemporal(someOtherTime) // "YYYY:MM:DD"
  * ```
- * @param instant {Temporal.Instant} - The instant in time to convert
+ * @param instantLike {Temporal.InstantLike} - The instant in time to convert
  * @returns Human readable relative or absolute time string
  */
-export declare function formatTemporal(instant: Temporal.Instant): string;
+export declare function formatTemporal(instantLike: Temporal.InstantLike): string;
 /**
  * Formats a temporal instant into a full human readable string, including year, month name, day name and time (HH:MM)
  *
- * @param instant {Temporal.Instant}
+ * @param instantLike {Temporal.InstantLike}
  * @returns Full human readable string
  */
-export declare function formatTemporalFull(instant: Temporal.Instant): string;
+export declare function formatTemporalFull(instantLike: Temporal.InstantLike): string;
 //# sourceMappingURL=utils.d.ts.map

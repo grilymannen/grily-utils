@@ -190,11 +190,12 @@ export function toDegrees(radians: number): number {
  * formatTemporal(yesterday) // "Yesterday at HH:MM"
  * formatTemporal(someOtherTime) // "YYYY:MM:DD"
  * ```
- * @param instant {Temporal.Instant} - The instant in time to convert
+ * @param instantLike {Temporal.InstantLike} - The instant in time to convert
  * @returns Human readable relative or absolute time string
  */
-export function formatTemporal(instant: Temporal.Instant): string {
-  if (!instant) return "";
+export function formatTemporal(instantLike: Temporal.InstantLike): string {
+  if (!instantLike) return "";
+  const instant = Temporal.Instant.from(instantLike);
   const now = Temporal.Now.zonedDateTimeISO();
   const ztd = instant.toZonedDateTimeISO(Temporal.Now.timeZoneId());
   const time = `${String(ztd.hour).padStart(2, "0")}:${String(ztd.minute).padStart(2, "0")}`;
@@ -214,10 +215,11 @@ export function formatTemporal(instant: Temporal.Instant): string {
 /**
  * Formats a temporal instant into a full human readable string, including year, month name, day name and time (HH:MM)
  * 
- * @param instant {Temporal.Instant}
+ * @param instantLike {Temporal.InstantLike}
  * @returns Full human readable string 
  */
-export function formatTemporalFull(instant: Temporal.Instant): string {
+export function formatTemporalFull(instantLike: Temporal.InstantLike): string {
+  const instant = Temporal.Instant.from(instantLike)
   const ztd = instant.toZonedDateTimeISO(Temporal.Now.timeZoneId())
   return `${weekday[ztd.dayOfWeek - 1]}, ${month[ztd.month - 1]} ${ztd.day}, ${String(ztd.hour).padStart(2, "0")}:${String(ztd.minute).padStart(2, "0")}`
 }
