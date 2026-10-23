@@ -1,6 +1,6 @@
 {
   "name": "@grilymannen/grily-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shared utility functions",
   "main": "dist/utils.js",
   "types": "dist/utils.d.ts",
